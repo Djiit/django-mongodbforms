@@ -321,15 +321,16 @@ class DocumentFormMetaclass(DeclarativeFieldsMetaclass):
                                          opts.exclude, opts.widgets,
                                          formfield_callback,
                                          formfield_generator)
+            # EDIT JTANAY : COMMENT "DECLARED_FIELDS"
             # make sure opts.fields doesn't specify an invalid field
-            none_document_fields = [k for k, v in fields.items() if not v]
-            missing_fields = (set(none_document_fields) -
-                              set(new_class.declared_fields.keys()))
-            if missing_fields:
-                message = 'Unknown field(s) (%s) specified for %s'
-                message = message % (', '.join(missing_fields),
-                                     opts.model.__name__)
-                raise FieldError(message)
+            #none_document_fields = [k for k, v in fields.items() if not v]
+            #missing_fields = (set(none_document_fields) -
+            #                  set(new_class.declared_fields.keys()))
+            #if missing_fields:
+            #    message = 'Unknown field(s) (%s) specified for %s'
+            #    message = message % (', '.join(missing_fields),
+            #                         opts.model.__name__)
+            #    raise FieldError(message)
             # Override default model fields with any custom declared ones
             # (plus, include all the other declared fields).
             fields.update(new_class.declared_fields)
